@@ -6,7 +6,7 @@
 /*   By: bsyvasal <bsyvasal@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 10:39:02 by bsyvasal          #+#    #+#             */
-/*   Updated: 2023/11/03 09:53:31 by bsyvasal         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:22:06 by bsyvasal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*read_line(int fd)
 	char	*res;
 	int		bytes;
 
-	buffer = malloc (BUFFER_SIZE);
+	buffer = malloc (BUFFER_SIZE + 1);
 	if (!buffer)
 		return (0);
 	res = NULL;

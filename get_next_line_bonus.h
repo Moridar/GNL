@@ -6,7 +6,7 @@
 /*   By: bsyvasal <bsyvasal@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 10:39:40 by bsyvasal          #+#    #+#             */
-/*   Updated: 2023/11/03 09:21:05 by bsyvasal         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:08:17 by bsyvasal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-char	*get_next_line_bonus(int fd);
+char	*get_next_line(int fd);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlen(const char *s);
