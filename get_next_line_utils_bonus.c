@@ -6,7 +6,7 @@
 /*   By: bsyvasal <bsyvasal@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 18:31:16 by bsyvasal          #+#    #+#             */
-/*   Updated: 2023/11/03 09:20:48 by bsyvasal         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:46:12 by bsyvasal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	str = malloc(len + 1);
 	if (!str)
 		return (0);
+	str[0] = 0;
 	if (start >= ft_strlen(s))
-	{
-		str[0] = 0;
 		return (str);
-	}
 	ft_memcpy(str, s + start, len);
 	str[len] = 0;
 	return (str);
@@ -54,22 +52,20 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1 && !s2)
 		return (0);
 	if (!s1)
-	{
-		s1 = malloc(1);
-		*s1 = 0;
-	}
+		return (ft_substr(s2, 0, ft_strlen(s2)));
 	if (!s2)
-		s2 = "";
+	{
+		free(s1);
+		return (ft_substr(s1, 0, ft_strlen(s1)));
+	}
 	s1len = ft_strlen(s1);
 	s2len = ft_strlen(s2);
 	str = malloc (s1len + s2len + 1);
-	if (!str)
+	if (str)
 	{
-		free(s1);
-		return (0);
+		ft_memcpy(str, s1, s1len);
+		ft_memcpy(str + s1len, s2, s2len + 1);
 	}
-	ft_memcpy(str, s1, s1len);
-	ft_memcpy(str + s1len, s2, s2len + 1);
 	free(s1);
 	return (str);
 }

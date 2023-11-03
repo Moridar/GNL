@@ -6,7 +6,7 @@
 /*   By: bsyvasal <bsyvasal@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 10:39:02 by bsyvasal          #+#    #+#             */
-/*   Updated: 2023/11/03 12:21:54 by bsyvasal         ###   ########.fr       */
+/*   Updated: 2023/11/03 13:49:35 by bsyvasal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ static char	*read_line(int fd)
 		if (bytes < 0 || !*buffer)
 			break ;
 		buffer[bytes] = 0;
+		if (!res)
+			res = ft_substr("", 0, 1);
 		res = ft_strjoin(res, buffer);
-		if (ft_strchr(res, '\n'))
+		if (res && ft_strchr(res, '\n'))
 			break ;
 	}
 	free(buffer);
@@ -62,6 +64,8 @@ static char	*trim_cache(char *cache)
 		i++;
 	tmp = ft_substr(cache, i, ft_strlen(cache) - i);
 	free(cache);
+	if (!tmp)
+		return (NULL);
 	if (!*tmp)
 	{
 		free(tmp);
@@ -76,15 +80,18 @@ char	*get_next_line(int fd)
 	char		*buffer;
 
 	if (fd < 0 || BUFFER_SIZE < 0 || read(fd, 0, 0) < 0)
+	{
+		while (cache)
+			cache = trim_cache(cache);
 		return (NULL);
+	}
 	if (!(cache && ft_strchr(cache, '\n')))
 	{
 		buffer = read_line(fd);
-		if (buffer)
-		{
-			cache = ft_strjoin(cache, buffer);
-			free(buffer);
-		}
+		if (!buffer)
+			return (NULL);
+		cache = ft_strjoin(cache, buffer);
+		free(buffer);
 	}
 	if (cache)
 	{
