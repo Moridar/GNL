@@ -6,7 +6,7 @@
 /*   By: bsyvasal <bsyvasal@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 10:39:02 by bsyvasal          #+#    #+#             */
-/*   Updated: 2023/11/03 13:53:02 by bsyvasal         ###   ########.fr       */
+/*   Updated: 2023/11/27 10:07:19 by bsyvasal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char	*read_line(int fd)
 		if (bytes < 0 || !*buffer)
 			break ;
 		buffer[bytes] = 0;
-		res = ft_strjoin(res, buffer);
+		res = ft_strjoinfree(res, buffer);
 		if (ft_strchr(res, '\n'))
 			break ;
 	}
@@ -88,7 +88,7 @@ char	*get_next_line(int fd)
 		buffer = read_line(fd);
 		if (buffer)
 		{
-			cache[fd] = ft_strjoin(cache[fd], buffer);
+			cache[fd] = ft_strjoinfree(cache[fd], buffer);
 			free(buffer);
 		}
 	}

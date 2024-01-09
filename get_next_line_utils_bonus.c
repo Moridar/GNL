@@ -6,7 +6,7 @@
 /*   By: bsyvasal <bsyvasal@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 18:31:16 by bsyvasal          #+#    #+#             */
-/*   Updated: 2023/11/03 13:46:12 by bsyvasal         ###   ########.fr       */
+/*   Updated: 2023/11/27 12:51:11 by bsyvasal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (0);
-	strlen = ft_strlen(s + start);
+	strlen = ft_strlen(s) - start;
 	if (strlen < len)
 		len = strlen;
 	str = malloc(len + 1);
@@ -43,7 +43,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoinfree(char *s1, char *s2)
 {
 	char	*str;
 	int		s1len;

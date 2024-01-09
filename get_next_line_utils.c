@@ -6,11 +6,12 @@
 /*   By: bsyvasal <bsyvasal@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 18:31:16 by bsyvasal          #+#    #+#             */
-/*   Updated: 2023/11/03 13:45:32 by bsyvasal         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:41:24 by bsyvasal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <string.h>
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -18,13 +19,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	strlen;
 
 	if (!s)
-		return (0);
-	strlen = ft_strlen(s + start);
+		return (NULL);
+	strlen = ft_strlen(s) - start;
 	if (strlen < len)
 		len = strlen;
 	str = malloc(len + 1);
 	if (!str)
-		return (0);
+		return (NULL);
 	str[0] = 0;
 	if (start >= ft_strlen(s))
 		return (str);
@@ -43,7 +44,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_and_free(char *s1, char *s2)
 {
 	char	*str;
 	int		s1len;

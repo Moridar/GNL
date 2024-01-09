@@ -6,7 +6,7 @@
 /*   By: bsyvasal <bsyvasal@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 10:39:02 by bsyvasal          #+#    #+#             */
-/*   Updated: 2023/11/03 13:49:35 by bsyvasal         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:52:46 by bsyvasal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@ static char	*read_line(int fd)
 	while (bytes > 0)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
-		if (bytes < 0 || !*buffer)
+		if (bytes < 0)
 			break ;
 		buffer[bytes] = 0;
-		if (!res)
-			res = ft_substr("", 0, 1);
-		res = ft_strjoin(res, buffer);
-		if (res && ft_strchr(res, '\n'))
+		res = ft_strjoin_and_free(res, buffer);
+		if (!res || (res && ft_strchr(res, '\n')))
 			break ;
 	}
 	free(buffer);
@@ -90,7 +88,7 @@ char	*get_next_line(int fd)
 		buffer = read_line(fd);
 		if (!buffer)
 			return (NULL);
-		cache = ft_strjoin(cache, buffer);
+		cache = ft_strjoin_and_free(cache, buffer);
 		free(buffer);
 	}
 	if (cache)
